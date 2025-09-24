@@ -1,0 +1,156 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|c:\\users\\oko baba\\documents\\purity\\c#\\travel service\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|c:\\users\\oko baba\\documents\\purity\\c#\\travel service\\travel service.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|solutionrelative:travel service.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|c:\\users\\oko baba\\documents\\purity\\c#\\travel service\\models\\entity\\bookings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|solutionrelative:models\\entity\\bookings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|c:\\users\\oko baba\\documents\\purity\\c#\\travel service\\models\\entity\\travelpackages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|solutionrelative:models\\entity\\travelpackages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|c:\\users\\oko baba\\documents\\purity\\c#\\travel service\\models\\entity\\rooms.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|solutionrelative:models\\entity\\rooms.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|c:\\users\\oko baba\\documents\\purity\\c#\\travel service\\models\\entity\\flights.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|solutionrelative:models\\entity\\flights.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|c:\\users\\oko baba\\documents\\purity\\c#\\travel service\\models\\entity\\hotels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|solutionrelative:models\\entity\\hotels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|c:\\users\\oko baba\\documents\\purity\\c#\\travel service\\models\\entity\\customers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{985BB470-AE38-4599-98FF-13340CFE9DC4}|Travel Service.csproj|solutionrelative:models\\entity\\customers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-24T01:02:22.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Rooms.cs",
+              "DocumentMoniker": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Models\\Entity\\Rooms.cs",
+              "RelativeDocumentMoniker": "Models\\Entity\\Rooms.cs",
+              "ToolTip": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Models\\Entity\\Rooms.cs",
+              "RelativeToolTip": "Models\\Entity\\Rooms.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-24T00:55:27.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TravelPackages.cs",
+              "DocumentMoniker": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Models\\Entity\\TravelPackages.cs",
+              "RelativeDocumentMoniker": "Models\\Entity\\TravelPackages.cs",
+              "ToolTip": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Models\\Entity\\TravelPackages.cs",
+              "RelativeToolTip": "Models\\Entity\\TravelPackages.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-24T00:21:30.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Flights.cs",
+              "DocumentMoniker": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Models\\Entity\\Flights.cs",
+              "RelativeDocumentMoniker": "Models\\Entity\\Flights.cs",
+              "ToolTip": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Models\\Entity\\Flights.cs",
+              "RelativeToolTip": "Models\\Entity\\Flights.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-24T00:21:02.112Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Hotels.cs",
+              "DocumentMoniker": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Models\\Entity\\Hotels.cs",
+              "RelativeDocumentMoniker": "Models\\Entity\\Hotels.cs",
+              "ToolTip": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Models\\Entity\\Hotels.cs",
+              "RelativeToolTip": "Models\\Entity\\Hotels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-24T00:20:50.299Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Customers.cs",
+              "DocumentMoniker": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Models\\Entity\\Customers.cs",
+              "RelativeDocumentMoniker": "Models\\Entity\\Customers.cs",
+              "ToolTip": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Models\\Entity\\Customers.cs",
+              "RelativeToolTip": "Models\\Entity\\Customers.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-24T00:20:13.67Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Bookings.cs",
+              "DocumentMoniker": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Models\\Entity\\Bookings.cs",
+              "RelativeDocumentMoniker": "Models\\Entity\\Bookings.cs",
+              "ToolTip": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Models\\Entity\\Bookings.cs",
+              "RelativeToolTip": "Models\\Entity\\Bookings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-23T22:49:23.702Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Travel Service",
+              "DocumentMoniker": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Travel Service.csproj",
+              "RelativeDocumentMoniker": "Travel Service.csproj",
+              "ToolTip": "C:\\Users\\Oko baba\\Documents\\Purity\\C#\\Travel Service\\Travel Service.csproj",
+              "RelativeToolTip": "Travel Service.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAIwBYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-23T22:47:33.83Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
