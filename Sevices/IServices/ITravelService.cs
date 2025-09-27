@@ -1,0 +1,12 @@
+using Travel_Service.Models.Dtos.Request;
+using Travel_Service.Models.Dtos.Response;
+
+namespace Travel_Service.Sevices.IServices;
+
+public interface ITravelService
+{
+    ICollection<BookedPackageResponseDetails> GetAllPackages();
+    
+    BookedPackageResponseDetails BookTravelPackage(BookedPackageRequestDto package);
+    
+}
