@@ -6,11 +6,11 @@ using Travel_Service.Sevices.IServices;
 
 namespace Travel_Service.Sevices;
 
-public class TravelPackagePackageService: ITravelPackageService
+public class TravelPackageService: ITravelPackageService
 {
     private readonly ITravelPackageRepository _packageRepository;
 
-    public TravelPackagePackageService(ITravelPackageRepository packageRepository)
+    public TravelPackageService(ITravelPackageRepository packageRepository)
     {
         _packageRepository = packageRepository;
     }

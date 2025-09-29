@@ -58,7 +58,7 @@ public class TravelServiceController :ControllerBase
     // POST: api/Travel/bookings
     [Authorize]
     [HttpPost("bookings")]
-    public async Task<IActionResult> CreateBooking([FromBody] BookingRequestDto booking)
+    public async Task<IActionResult> CreateBooking([FromBody] Booking booking)
     {
         await _bookingService.AddBookingAsync(booking);
         return Ok(new { message = "Booking created successfully." });

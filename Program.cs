@@ -45,12 +45,28 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // AutoMapper + Services
+// AutoMapper
 builder.Services.AddAutoMapper(typeof(TravelServiceMappings));
+
+// Repositories
 builder.Services.AddScoped<ITravelPackageRepository, TravelPackageRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IHotelsRepository, HotelsRepository>();
+builder.Services.AddScoped<IRoomsRepository, RoomsRepository>();
+builder.Services.AddScoped<IFlightsRepository, FlightRepository>();
+
+// Services
 builder.Services.AddScoped<IBookingService, BookingService>();
-builder.Services.AddScoped<ITravelPackageService, TravelPackagePackageService>();
+builder.Services.AddScoped<ITravelPackageService, TravelPackageService>(); // fixed typo
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IHotelsService, HotelsService>();
+builder.Services.AddScoped<IRoomsService, RoomsService>();
+builder.Services.AddScoped<IFlightService, FlightService>();
+
+// JWT Helper
+builder.Services.AddScoped<IJwtTokenGenerator>();
+
 builder.Services.AddScoped<JwtTokenGenerator>();
 
 // JWT Authentication
