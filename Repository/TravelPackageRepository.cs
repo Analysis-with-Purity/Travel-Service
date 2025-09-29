@@ -17,36 +17,36 @@ public class TravelPackageRepository: ITravelPackageRepository
 
     public async Task<IEnumerable<TravelPackages>> GetAllPackagesAsync()
     {
-        return await _context.Packages
+        return await _context.TravelPackages
             .Include(tp => tp.Flights)
             .ToListAsync();
     }
 
     public async Task<TravelPackages> GetPackageByIdAsync(int packageId)
     {
-        return await _context.Packages
+        return await _context.TravelPackages
             .Include(tp => tp.Flights)
             .FirstOrDefaultAsync(tp => tp.PackageId == packageId);
     }
 
     public async Task AddPackageAsync(TravelPackages travelPackage)
     {
-        await _context.Packages.AddAsync(travelPackage);
+        await _context.TravelPackages.AddAsync(travelPackage);
         await _context.SaveChangesAsync();
     }
 
     public async Task UpdatePackageAsync(TravelPackages travelPackage)
     {
-        _context.Packages.Update(travelPackage);
+        _context.TravelPackages.Update(travelPackage);
         await _context.SaveChangesAsync();
     }
 
     public async Task DeletePackageAsync(int packageId)
     {
-        var package = await _context.Packages.FindAsync(packageId);
+        var package = await _context.TravelPackages.FindAsync(packageId);
         if (package != null)
         {
-            _context.Packages.Remove(package);
+            _context.TravelPackages.Remove(package);
             await _context.SaveChangesAsync();
         }
     }

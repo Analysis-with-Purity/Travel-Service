@@ -12,8 +12,8 @@ using Travel_Service.Data;
 namespace Travel_Service.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250926211548_AddModelsToDb")]
-    partial class AddModelsToDb
+    [Migration("20250929174227_AddDiaryModelsToDb")]
+    partial class AddDiaryModelsToDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,33 +42,27 @@ namespace Travel_Service.Migrations
                     b.Property<int>("FlightId")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("FlightId1")
-                        .HasColumnType("uuid");
-
                     b.Property<int>("PackageId")
                         .HasColumnType("integer");
 
                     b.Property<int>("RoomId")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("RoomId1")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("TravelPackagePackageId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("TravelPackagePackageId")
+                        .HasColumnType("integer");
 
-                    b.Property<Guid>("UserCustomerId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("UserCustomerId")
+                        .HasColumnType("integer");
 
                     b.HasKey("BookingId");
 
-                    b.HasIndex("FlightId1");
+                    b.HasIndex("FlightId");
 
-                    b.HasIndex("RoomId1");
+                    b.HasIndex("RoomId");
 
                     b.HasIndex("TravelPackagePackageId");
 
@@ -79,9 +73,11 @@ namespace Travel_Service.Migrations
 
             modelBuilder.Entity("Travel_Service.Models.Entity.Flight", b =>
                 {
-                    b.Property<Guid>("FlightId")
+                    b.Property<int>("FlightId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FlightId"));
 
                     b.Property<string>("Airline")
                         .IsRequired()
@@ -102,8 +98,8 @@ namespace Travel_Service.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("TravelPackagesPackageId")
-                        .HasColumnType("uuid");
+                    b.Property<int?>("TravelPackagesPackageId")
+                        .HasColumnType("integer");
 
                     b.HasKey("FlightId");
 
@@ -114,9 +110,11 @@ namespace Travel_Service.Migrations
 
             modelBuilder.Entity("Travel_Service.Models.Entity.Hotel", b =>
                 {
-                    b.Property<Guid>("HotelId")
+                    b.Property<int>("HotelId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("HotelId"));
 
                     b.Property<string>("HotelLocation")
                         .IsRequired()
@@ -133,19 +131,20 @@ namespace Travel_Service.Migrations
 
             modelBuilder.Entity("Travel_Service.Models.Entity.Room", b =>
                 {
-                    b.Property<Guid>("RoomId")
+                    b.Property<int>("RoomId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("RoomId"));
+
+                    b.Property<int>("AvailableUnits")
+                        .HasColumnType("integer");
 
                     b.Property<int>("HotelId")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("HotelId1")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<decimal>("PricePerNight")
+                        .HasColumnType("numeric");
 
                     b.Property<string>("RoomType")
                         .IsRequired()
@@ -153,16 +152,18 @@ namespace Travel_Service.Migrations
 
                     b.HasKey("RoomId");
 
-                    b.HasIndex("HotelId1");
+                    b.HasIndex("HotelId");
 
                     b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("Travel_Service.Models.Entity.TravelPackages", b =>
                 {
-                    b.Property<Guid>("PackageId")
+                    b.Property<int>("PackageId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("PackageId"));
 
                     b.Property<string>("Amount")
                         .IsRequired()
@@ -179,14 +180,16 @@ namespace Travel_Service.Migrations
 
                     b.HasKey("PackageId");
 
-                    b.ToTable("Packages");
+                    b.ToTable("TravelPackages");
                 });
 
             modelBuilder.Entity("Travel_Service.Models.Entity.User", b =>
                 {
-                    b.Property<Guid>("CustomerId")
+                    b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CustomerId"));
 
                     b.Property<string>("Country")
                         .IsRequired()
@@ -200,26 +203,26 @@ namespace Travel_Service.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("CustomerId");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Travel_Service.Models.Entity.Booking", b =>
                 {
                     b.HasOne("Travel_Service.Models.Entity.Flight", "Flight")
                         .WithMany()
-                        .HasForeignKey("FlightId1")
+                        .HasForeignKey("FlightId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Travel_Service.Models.Entity.Room", "Room")
-                        .WithMany()
-                        .HasForeignKey("RoomId1")
+                        .WithMany("Bookings")
+                        .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -255,7 +258,7 @@ namespace Travel_Service.Migrations
                 {
                     b.HasOne("Travel_Service.Models.Entity.Hotel", "Hotel")
                         .WithMany("Rooms")
-                        .HasForeignKey("HotelId1")
+                        .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -265,6 +268,11 @@ namespace Travel_Service.Migrations
             modelBuilder.Entity("Travel_Service.Models.Entity.Hotel", b =>
                 {
                     b.Navigation("Rooms");
+                });
+
+            modelBuilder.Entity("Travel_Service.Models.Entity.Room", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 
             modelBuilder.Entity("Travel_Service.Models.Entity.TravelPackages", b =>

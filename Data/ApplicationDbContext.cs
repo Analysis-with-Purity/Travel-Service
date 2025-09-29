@@ -10,12 +10,14 @@ namespace Travel_Service.Data
         {
             
         }
-        public DbSet<User> Customers { get; set; }
-        public DbSet<TravelPackages> Packages { get; set; }
-        public DbSet<Flight> Flights { get; set; }
+  
+        public DbSet<User> Users { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<TravelPackages> TravelPackages { get; set; }
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Room> Rooms { get; set; }
-        public DbSet<Booking> Bookings { get; set; }
-        
+        public DbSet<Flight> Flights { get; set; }
+        }
+
     }
-}
+

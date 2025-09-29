@@ -18,7 +18,7 @@ public class UserRepository : IUserRepository
         {
             try
             {
-                return _db.Customers.Find(id);
+                return _db.Users.Find(id);
             }
             catch (Exception ex)
             {
@@ -31,7 +31,7 @@ public class UserRepository : IUserRepository
         {
             try
             {
-                return _db.Customers.ToList();
+                return _db.Users.ToList();
             }
             catch (Exception ex)
             {
@@ -44,7 +44,7 @@ public class UserRepository : IUserRepository
         {
             try
             {
-                return _db.Customers.FirstOrDefault(u => u.Email == email);
+                return _db.Users.FirstOrDefault(u => u.Email == email);
             }
             catch (Exception ex)
             {
@@ -57,7 +57,7 @@ public class UserRepository : IUserRepository
         {
             try
             {
-                _db.Customers.Add(user);
+                _db.Users.Add(user);
                 return SaveChanges();
             }
             catch (Exception ex)
@@ -71,7 +71,7 @@ public class UserRepository : IUserRepository
         {
             try
             {
-                _db.Customers.Update(user);
+                _db.Users.Update(user);
                 return SaveChanges();
             }
             catch (Exception ex)
@@ -91,7 +91,7 @@ public class UserRepository : IUserRepository
                     return false;
                 }
 
-                _db.Customers.Remove(user);
+                _db.Users.Remove(user);
                 return SaveChanges();
             }
             catch (Exception ex)
