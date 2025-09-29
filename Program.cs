@@ -65,9 +65,7 @@ builder.Services.AddScoped<IRoomsService, RoomsService>();
 builder.Services.AddScoped<IFlightService, FlightService>();
 
 // JWT Helper
-builder.Services.AddScoped<IJwtTokenGenerator>();
-
-builder.Services.AddScoped<JwtTokenGenerator>();
+builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
 // JWT Authentication
 builder.Services.AddAuthentication(options =>

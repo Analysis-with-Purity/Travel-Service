@@ -10,7 +10,7 @@ namespace Travel_Service.Helper
     {
         string GenerateToken(User user);
     }
-public class JwtTokenGenerator
+public class JwtTokenGenerator: IJwtTokenGenerator
 {
 
         private readonly IConfiguration _config;
@@ -51,7 +51,12 @@ public class JwtTokenGenerator
 
 
         }
-    }
+
+        public string GenerateToken(User user)
+        {
+            throw new NotImplementedException();
+        }
+}
 }
 
 
