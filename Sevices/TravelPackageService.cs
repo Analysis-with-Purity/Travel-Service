@@ -15,17 +15,18 @@ public class TravelPackageService: ITravelPackageService
         _packageRepository = packageRepository;
     }
 
-    public Task<IEnumerable<TravelPackages>> GetAllPackagesAsync()
+    public Task<IEnumerable<TravelPackage>> GetAllPackagesAsync()
     {
         return _packageRepository.GetAllPackagesAsync();
     }
 
-    public Task<TravelPackages> GetPackageByIdAsync(int packageId)
+    public async Task<TravelPackage> GetPackageByIdAsync(int packageId)
     {
-        throw new NotImplementedException();
+        // Fetch package including flights
+        var package = await _packageRepository.GetPackageByIdAsync(packageId);
+        return package;
     }
-
-    public Task AddPackageAsync(TravelPackages travelPackage)
+    public Task AddPackageAsync(TravelPackage travelPackage)
     {
         throw new NotImplementedException();
     }

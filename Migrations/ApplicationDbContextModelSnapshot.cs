@@ -49,21 +49,15 @@ namespace Travel_Service.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("TravelPackagePackageId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("UserCustomerId")
-                        .HasColumnType("integer");
-
                     b.HasKey("BookingId");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("FlightId");
 
+                    b.HasIndex("PackageId");
+
                     b.HasIndex("RoomId");
-
-                    b.HasIndex("TravelPackagePackageId");
-
-                    b.HasIndex("UserCustomerId");
 
                     b.ToTable("Bookings");
                 });
@@ -95,14 +89,36 @@ namespace Travel_Service.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("TravelPackagesPackageId")
+                    b.Property<int>("TravelPackageId")
                         .HasColumnType("integer");
 
                     b.HasKey("FlightId");
 
-                    b.HasIndex("TravelPackagesPackageId");
+                    b.HasIndex("TravelPackageId");
 
                     b.ToTable("Flights");
+
+                    b.HasData(
+                        new
+                        {
+                            FlightId = 1,
+                            Airline = "Emirates",
+                            Amount = "1200",
+                            ArrivalLocation = "Dubai",
+                            Class = 0,
+                            DepartureLocation = "Lagos",
+                            TravelPackageId = 0
+                        },
+                        new
+                        {
+                            FlightId = 2,
+                            Airline = "Air France",
+                            Amount = "1100",
+                            ArrivalLocation = "Paris",
+                            Class = 1,
+                            DepartureLocation = "Lagos",
+                            TravelPackageId = 0
+                        });
                 });
 
             modelBuilder.Entity("Travel_Service.Models.Entity.Hotel", b =>
@@ -124,6 +140,20 @@ namespace Travel_Service.Migrations
                     b.HasKey("HotelId");
 
                     b.ToTable("Hotels");
+
+                    b.HasData(
+                        new
+                        {
+                            HotelId = 1,
+                            HotelLocation = "Dubai",
+                            HotelName = "Hilton Dubai"
+                        },
+                        new
+                        {
+                            HotelId = 2,
+                            HotelLocation = "Paris",
+                            HotelName = "Eiffel View"
+                        });
                 });
 
             modelBuilder.Entity("Travel_Service.Models.Entity.Room", b =>
@@ -154,7 +184,7 @@ namespace Travel_Service.Migrations
                     b.ToTable("Rooms");
                 });
 
-            modelBuilder.Entity("Travel_Service.Models.Entity.TravelPackages", b =>
+            modelBuilder.Entity("Travel_Service.Models.Entity.TravelPackage", b =>
                 {
                     b.Property<int>("PackageId")
                         .ValueGeneratedOnAdd()
@@ -178,6 +208,24 @@ namespace Travel_Service.Migrations
                     b.HasKey("PackageId");
 
                     b.ToTable("TravelPackages");
+
+                    b.HasData(
+                        new
+                        {
+                            PackageId = 1,
+                            Amount = "2500",
+                            Destination = "Dubai",
+                            NoOfDays = 5,
+                            PackageClass = "Luxury"
+                        },
+                        new
+                        {
+                            PackageId = 2,
+                            Amount = "1800",
+                            Destination = "Paris",
+                            NoOfDays = 3,
+                            PackageClass = "Standard"
+                        });
                 });
 
             modelBuilder.Entity("Travel_Service.Models.Entity.User", b =>
@@ -207,32 +255,50 @@ namespace Travel_Service.Migrations
                     b.HasKey("CustomerId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            CustomerId = 1,
+                            Country = "Nigeria",
+                            Email = "purity@example.com",
+                            Name = "Purity Ihansek",
+                            PasswordHash = "hashed123"
+                        },
+                        new
+                        {
+                            CustomerId = 2,
+                            Country = "France",
+                            Email = "jane@example.com",
+                            Name = "Jane Doe",
+                            PasswordHash = "hashed456"
+                        });
                 });
 
             modelBuilder.Entity("Travel_Service.Models.Entity.Booking", b =>
                 {
+                    b.HasOne("Travel_Service.Models.Entity.User", "User")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Travel_Service.Models.Entity.Flight", "Flight")
                         .WithMany()
                         .HasForeignKey("FlightId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Travel_Service.Models.Entity.TravelPackage", "TravelPackage")
+                        .WithMany()
+                        .HasForeignKey("PackageId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Travel_Service.Models.Entity.Room", "Room")
                         .WithMany("Bookings")
                         .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Travel_Service.Models.Entity.TravelPackages", "TravelPackage")
-                        .WithMany()
-                        .HasForeignKey("TravelPackagePackageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Travel_Service.Models.Entity.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserCustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Flight");
@@ -246,9 +312,13 @@ namespace Travel_Service.Migrations
 
             modelBuilder.Entity("Travel_Service.Models.Entity.Flight", b =>
                 {
-                    b.HasOne("Travel_Service.Models.Entity.TravelPackages", null)
+                    b.HasOne("Travel_Service.Models.Entity.TravelPackage", "TravelPackage")
                         .WithMany("Flights")
-                        .HasForeignKey("TravelPackagesPackageId");
+                        .HasForeignKey("TravelPackageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TravelPackage");
                 });
 
             modelBuilder.Entity("Travel_Service.Models.Entity.Room", b =>
@@ -272,7 +342,7 @@ namespace Travel_Service.Migrations
                     b.Navigation("Bookings");
                 });
 
-            modelBuilder.Entity("Travel_Service.Models.Entity.TravelPackages", b =>
+            modelBuilder.Entity("Travel_Service.Models.Entity.TravelPackage", b =>
                 {
                     b.Navigation("Flights");
                 });

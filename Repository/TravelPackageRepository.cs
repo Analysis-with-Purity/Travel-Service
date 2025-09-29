@@ -15,27 +15,27 @@ public class TravelPackageRepository: ITravelPackageRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<TravelPackages>> GetAllPackagesAsync()
+    public async Task<IEnumerable<TravelPackage>> GetAllPackagesAsync()
     {
         return await _context.TravelPackages
             .Include(tp => tp.Flights)
             .ToListAsync();
     }
-
-    public async Task<TravelPackages> GetPackageByIdAsync(int packageId)
+    public async Task<TravelPackage> GetPackageByIdAsync(int packageId)
     {
         return await _context.TravelPackages
             .Include(tp => tp.Flights)
             .FirstOrDefaultAsync(tp => tp.PackageId == packageId);
     }
 
-    public async Task AddPackageAsync(TravelPackages travelPackage)
+
+    public async Task AddPackageAsync(TravelPackage travelPackage)
     {
         await _context.TravelPackages.AddAsync(travelPackage);
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdatePackageAsync(TravelPackages travelPackage)
+    public async Task UpdatePackageAsync(TravelPackage travelPackage)
     {
         _context.TravelPackages.Update(travelPackage);
         await _context.SaveChangesAsync();

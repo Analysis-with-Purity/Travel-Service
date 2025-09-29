@@ -4,10 +4,12 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Travel_Service.Migrations
 {
     /// <inheritdoc />
-    public partial class AddDiaryModelsToDb : Migration
+    public partial class AddModels : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -91,16 +93,17 @@ namespace Travel_Service.Migrations
                     ArrivalLocation = table.Column<string>(type: "text", nullable: false),
                     Amount = table.Column<string>(type: "text", nullable: false),
                     Class = table.Column<int>(type: "integer", nullable: false),
-                    TravelPackagesPackageId = table.Column<int>(type: "integer", nullable: true)
+                    TravelPackageId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Flights", x => x.FlightId);
                     table.ForeignKey(
-                        name: "FK_Flights_TravelPackages_TravelPackagesPackageId",
-                        column: x => x.TravelPackagesPackageId,
+                        name: "FK_Flights_TravelPackages_TravelPackageId",
+                        column: x => x.TravelPackageId,
                         principalTable: "TravelPackages",
-                        principalColumn: "PackageId");
+                        principalColumn: "PackageId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -110,9 +113,7 @@ namespace Travel_Service.Migrations
                     BookingId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     CustomerId = table.Column<int>(type: "integer", nullable: false),
-                    UserCustomerId = table.Column<int>(type: "integer", nullable: false),
                     PackageId = table.Column<int>(type: "integer", nullable: false),
-                    TravelPackagePackageId = table.Column<int>(type: "integer", nullable: false),
                     FlightId = table.Column<int>(type: "integer", nullable: false),
                     RoomId = table.Column<int>(type: "integer", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -132,20 +133,61 @@ namespace Travel_Service.Migrations
                         column: x => x.RoomId,
                         principalTable: "Rooms",
                         principalColumn: "RoomId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Bookings_TravelPackages_TravelPackagePackageId",
-                        column: x => x.TravelPackagePackageId,
+                        name: "FK_Bookings_TravelPackages_PackageId",
+                        column: x => x.PackageId,
                         principalTable: "TravelPackages",
                         principalColumn: "PackageId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Bookings_Users_UserCustomerId",
-                        column: x => x.UserCustomerId,
+                        name: "FK_Bookings_Users_CustomerId",
+                        column: x => x.CustomerId,
                         principalTable: "Users",
                         principalColumn: "CustomerId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Flights",
+                columns: new[] { "FlightId", "Airline", "Amount", "ArrivalLocation", "Class", "DepartureLocation", "TravelPackageId" },
+                values: new object[,]
+                {
+                    { 1, "Emirates", "1200", "Dubai", 0, "Lagos", 0 },
+                    { 2, "Air France", "1100", "Paris", 1, "Lagos", 0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Hotels",
+                columns: new[] { "HotelId", "HotelLocation", "HotelName" },
+                values: new object[,]
+                {
+                    { 1, "Dubai", "Hilton Dubai" },
+                    { 2, "Paris", "Eiffel View" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TravelPackages",
+                columns: new[] { "PackageId", "Amount", "Destination", "NoOfDays", "PackageClass" },
+                values: new object[,]
+                {
+                    { 1, "2500", "Dubai", 5, "Luxury" },
+                    { 2, "1800", "Paris", 3, "Standard" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "CustomerId", "Country", "Email", "Name", "PasswordHash" },
+                values: new object[,]
+                {
+                    { 1, "Nigeria", "purity@example.com", "Purity Ihansek", "hashed123" },
+                    { 2, "France", "jane@example.com", "Jane Doe", "hashed456" }
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bookings_CustomerId",
+                table: "Bookings",
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_FlightId",
@@ -153,24 +195,19 @@ namespace Travel_Service.Migrations
                 column: "FlightId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Bookings_PackageId",
+                table: "Bookings",
+                column: "PackageId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Bookings_RoomId",
                 table: "Bookings",
                 column: "RoomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bookings_TravelPackagePackageId",
-                table: "Bookings",
-                column: "TravelPackagePackageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Bookings_UserCustomerId",
-                table: "Bookings",
-                column: "UserCustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Flights_TravelPackagesPackageId",
+                name: "IX_Flights_TravelPackageId",
                 table: "Flights",
-                column: "TravelPackagesPackageId");
+                column: "TravelPackageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rooms_HotelId",

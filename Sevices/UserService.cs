@@ -37,6 +37,11 @@ public class UserService: IUserService
         return _userRepository.GetUserByEmail(email);
     }
 
+    public Task AddUserAsync(User user)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task AddUserAsync(User user, string password)
     {
         // Hash the password before saving
@@ -54,6 +59,11 @@ public class UserService: IUserService
         if (user == null) return false;
 
         return BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
+    }
+
+    public Task<string> AuthenticateUserAsync(LoginRequest request, IJwtTokenGenerator tokengenerator)
+    {
+        throw new NotImplementedException();
     }
 
     // Authenticate user and generate JWT

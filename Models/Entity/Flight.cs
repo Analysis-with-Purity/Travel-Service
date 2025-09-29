@@ -14,5 +14,7 @@ namespace Travel_Service.Models.Entity
         public string Amount { get; set; }
         public FlightClass Class { get; set; }
 
+        public int TravelPackageId { get; set; }   // <- MUST exist
+        public TravelPackage TravelPackage { get; set; }
     }
 }

@@ -10,7 +10,6 @@ namespace Travel_Service.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Authorize]
 public class TravelServiceController :ControllerBase
 {
    

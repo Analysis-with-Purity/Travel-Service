@@ -6,9 +6,9 @@ namespace Travel_Service.Sevices.IServices;
 
 public interface ITravelPackageService
 {
-    Task<IEnumerable<TravelPackages>> GetAllPackagesAsync();
-    Task<TravelPackages> GetPackageByIdAsync(int packageId);
-    Task AddPackageAsync(TravelPackages travelPackage);
-    // Task UpdatePackageAsync(TravelPackages travelPackage);
+    Task<IEnumerable<TravelPackage>> GetAllPackagesAsync();
+    Task<TravelPackage> GetPackageByIdAsync(int packageId);
+    Task AddPackageAsync(TravelPackage travelPackage);
+    // Task UpdatePackageAsync(TravelPackage travelPackage);
     // Task DeletePackageAsync(int packageId);
 }

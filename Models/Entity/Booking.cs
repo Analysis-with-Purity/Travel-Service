@@ -12,7 +12,8 @@ namespace Travel_Service.Models.Entity
         public User User { get; set; }
 
         public int PackageId { get; set; }
-        public TravelPackages TravelPackage { get; set; }
+        public TravelPackage TravelPackage { get; set; }
+
 
         public int FlightId { get; set; }
         public Flight Flight {  get; set; }

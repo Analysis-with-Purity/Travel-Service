@@ -5,9 +5,9 @@ namespace Travel_Service.Repository.IRepository;
 
 public interface ITravelPackageRepository
 {
-    Task<IEnumerable<TravelPackages>> GetAllPackagesAsync();
-    Task<TravelPackages> GetPackageByIdAsync(int packageId);
-    Task AddPackageAsync(TravelPackages travelPackage);
-    Task UpdatePackageAsync(TravelPackages travelPackage);
+    Task<IEnumerable<TravelPackage>> GetAllPackagesAsync();
+    Task<TravelPackage> GetPackageByIdAsync(int packageId);
+    Task AddPackageAsync(TravelPackage travelPackage);
+    Task UpdatePackageAsync(TravelPackage travelPackage);
     Task DeletePackageAsync(int packageId);
 }
