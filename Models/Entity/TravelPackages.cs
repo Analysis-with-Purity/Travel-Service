@@ -5,7 +5,7 @@ namespace Travel_Service.Models.Entity
     public class TravelPackages
     {
         [Key]
-        public Guid PackageId { get; set;}
+        public int PackageId { get; set;}
         public string? PackageClass { get; set;}
         public string Amount { get; set;}
         public List<Flight> Flights { get; set; } = new();

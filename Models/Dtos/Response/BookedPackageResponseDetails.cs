@@ -3,7 +3,7 @@ namespace Travel_Service.Models.Dtos.Response;
 public class BookedPackageResponseDetails
 {
     public string Message { get; set; }
-    public BookedPackageResponseDto BookedPackage { get; set; }
+    public BookingResponseDto Booking { get; set; }
     public bool IsSuccess { get; set; }
     
 

@@ -9,7 +9,7 @@ public class TravelServiceMappings :Profile
     public TravelServiceMappings()
     {
         CreateMap<Flight, FlightRequestDto>().ReverseMap();
-        CreateMap<Booking, BookedPackageRequestDto>().ReverseMap();
+        CreateMap<Booking, BookingRequestDto>().ReverseMap();
         CreateMap<User, RegisterUserRequestDto>().ReverseMap();
     }
 }

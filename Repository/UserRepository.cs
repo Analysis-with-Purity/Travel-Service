@@ -7,79 +7,113 @@ namespace Travel_Service.Repository;
 
 public class UserRepository : IUserRepository
 {
-    public readonly ApplicationDbContext _db;
-    public UserRepository(ApplicationDbContext db)
-    {
-        _db = db;
-    }
-    public bool RegisterUser(User userDetails)
-    {
-        try
-        {
-            _db.Customers.Add(userDetails);
-            return Save();
-        }
-        catch(Exception ex)
-        {
-            Console.WriteLine($"Error in addidng customer: {ex.Message}");
-            return false;
-        }
-    }
+    private readonly ApplicationDbContext _db;
 
-    public User GetUserById(Guid customerId)
-    {
-        try
+        public UserRepository(ApplicationDbContext db)
         {
-            return _db.Customers.FirstOrDefault(a => a.CustomerId == customerId);
+            _db = db;
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error in GetUserById: {ex.Message}");
-            return null;
-        }
-    }
 
-    public User GetUserByEmail(string email)
-    {
-        try
+        public User GetUserById(int id)
         {
-            return _db.Customers.FirstOrDefault(a => a.Email == email);
+            try
+            {
+                return _db.Customers.Find(id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetUserById: {ex.Message}");
+                return null;
+            }
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error in GetUserById: {ex.Message}");
-            return null;
-        }
-    }
 
-    public bool UpdateUser(User userDetails)
-    {
-        try
+        public IEnumerable<User> GetAllUsers()
         {
-            _db.Customers.Update(userDetails);
-            return Save();
+            try
+            {
+                return _db.Customers.ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetAllUsers: {ex.Message}");
+                return Enumerable.Empty<User>();
+            }
         }
-        catch
-        {
-            return false;
-        }
-    }
 
-    public bool Save()
-    {
-        try
+        public User GetUserByEmail(string email)
         {
-            return _db.SaveChanges() >= 0;
+            try
+            {
+                return _db.Customers.FirstOrDefault(u => u.Email == email);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetUserByEmail: {ex.Message}");
+                return null;
+            }
         }
-        catch (DbUpdateException dbEx)
+
+        public bool AddUser(User user)
         {
-            Console.WriteLine($"Database update error: {dbEx.Message}");
-            return false;
+            try
+            {
+                _db.Customers.Add(user);
+                return SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in AddUser: {ex.Message}");
+                return false;
+            }
         }
-        catch (Exception ex)
+
+        public bool UpdateUser(User user)
         {
-            Console.WriteLine($"Error in Save: {ex.Message}");
-            return false;
+            try
+            {
+                _db.Customers.Update(user);
+                return SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in UpdateUser: {ex.Message}");
+                return false;
+            }
         }
-    }
+
+        public bool DeleteUser(int id)
+        {
+            try
+            {
+                var user = GetUserById(id);
+                if (user == null)
+                {
+                    return false;
+                }
+
+                _db.Customers.Remove(user);
+                return SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in DeleteUser: {ex.Message}");
+                return false;
+            }
+        }
+
+        public bool SaveChanges()
+        {
+            try
+            {
+                return _db.SaveChanges() >= 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in SaveChanges: {ex.Message}");
+                return false;
+            }
+        }
+
+       
+        
 }

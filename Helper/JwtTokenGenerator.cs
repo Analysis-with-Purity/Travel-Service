@@ -2,10 +2,14 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Travel_Service.Models.Entity;
 
 namespace Travel_Service.Helper
 {
-
+    public interface IJwtTokenGenerator
+    {
+        string GenerateToken(User user);
+    }
 public class JwtTokenGenerator
 {
 

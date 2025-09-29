@@ -179,3 +179,4 @@
 /Users/user/Documents/C#/Project 2/Travel Service/obj/Debug/net8.0/ref/Travel Service.dll
 /Users/user/Documents/C#/Project 2/Travel Service/bin/Debug/net8.0/Serilog.dll
 /Users/user/Documents/C#/Project 2/Travel Service/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/user/Documents/C#/Project 2/Travel Service/bin/Debug/net8.0/BCrypt.Net-Core.dll

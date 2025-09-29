@@ -4,10 +4,13 @@ namespace Travel_Service.Repository.IRepository;
 
 public interface IUserRepository
 {
-    bool RegisterUser(User userDetails);
-    User GetUserById(Guid customerId);
+    User GetUserById(int id);
+    IEnumerable<User> GetAllUsers();
     User GetUserByEmail(string email);
-    bool UpdateUser(User userDetails);
-    bool Save();
+    bool AddUser(User user);
+    bool UpdateUser(User user);
+    bool DeleteUser(int id);
+    bool SaveChanges();
+    
 
 }

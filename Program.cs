@@ -46,10 +46,10 @@ builder.Services.AddSwaggerGen(c =>
 
 // AutoMapper + Services
 builder.Services.AddAutoMapper(typeof(TravelServiceMappings));
-builder.Services.AddScoped<ITravelServiceRepository, TravelServiceRepository>();
+builder.Services.AddScoped<ITravelPackageRepository, TravelPackageRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IBookingService, BookingService>();
-builder.Services.AddScoped<ITravelService, TravelService>();
+builder.Services.AddScoped<ITravelPackageService, TravelPackagePackageService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<JwtTokenGenerator>();
 

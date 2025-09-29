@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Travel_Service.Helper;
 using Travel_Service.Models.Dtos.Request;
+using Travel_Service.Models.Entity;
 using Travel_Service.Sevices.IServices;
 
 namespace Travel_Service.Controllers;
@@ -17,16 +18,16 @@ public class UserController:ControllerBase
     }
     
     [HttpPost("register")]
-    public IActionResult Register([FromBody] RegisterUserRequestDto user)
+    public IActionResult Register([FromBody] User user, string password)
     {
-        var result = _user.RegisterUser(user);
+        var result = _user.AddUserAsync(user, password);
         return Ok(result);
     }
   
     [HttpPost("login")]
-    public IActionResult Login([FromBody] LoginRequestDto request, [FromServices] JwtTokenGenerator tokenGenerator)
+    public IActionResult Login([FromBody] string email, string password)
     {
-        var result = _user.Login(request, tokenGenerator);
+        var result = _user.AuthenticateUserAsync(email, password);
         return Ok(result);
     }
 }

@@ -2,7 +2,7 @@ using Travel_Service.Models.Entity;
 
 namespace Travel_Service.Models.Dtos.Response;
 
-public class BookedPackageResponseDto
+public class BookingResponseDto
 {
     public int BookingId { get; set; }
 
@@ -20,5 +20,6 @@ public class BookedPackageResponseDto
 
     public DateTime DateCreated { get; set; }
     public string Status { get; set; }
+
     
 }

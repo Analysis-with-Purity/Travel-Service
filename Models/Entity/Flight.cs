@@ -5,7 +5,7 @@ namespace Travel_Service.Models.Entity
     public class Flight
     {
         [Key]
-        public Guid FlightId { get; set; }
+        public int FlightId { get; set; }
         public string Airline { get; set; }
         // public DateTime DepatureTime { get; set;}
         public string DepartureLocation { get; set; }
