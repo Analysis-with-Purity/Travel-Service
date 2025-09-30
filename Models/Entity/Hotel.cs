@@ -9,6 +9,7 @@ namespace Travel_Service.Models.Entity
         public string HotelName { get; set; }
         public string HotelLocation { get; set; }
         public List<Room> Rooms { get; set; } = new();
+        
 
     }
 }

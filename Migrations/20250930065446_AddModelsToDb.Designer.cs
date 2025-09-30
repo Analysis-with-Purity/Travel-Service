@@ -12,8 +12,8 @@ using Travel_Service.Data;
 namespace Travel_Service.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250929193441_AddModels")]
-    partial class AddModels
+    [Migration("20250930065446_AddModelsToDb")]
+    partial class AddModelsToDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,12 +92,12 @@ namespace Travel_Service.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("TravelPackageId")
+                    b.Property<int?>("TravelPackagePackageId")
                         .HasColumnType("integer");
 
                     b.HasKey("FlightId");
 
-                    b.HasIndex("TravelPackageId");
+                    b.HasIndex("TravelPackagePackageId");
 
                     b.ToTable("Flights");
 
@@ -109,8 +109,7 @@ namespace Travel_Service.Migrations
                             Amount = "1200",
                             ArrivalLocation = "Dubai",
                             Class = 0,
-                            DepartureLocation = "Lagos",
-                            TravelPackageId = 0
+                            DepartureLocation = "Lagos"
                         },
                         new
                         {
@@ -119,8 +118,7 @@ namespace Travel_Service.Migrations
                             Amount = "1100",
                             ArrivalLocation = "Paris",
                             Class = 1,
-                            DepartureLocation = "Lagos",
-                            TravelPackageId = 0
+                            DepartureLocation = "Lagos"
                         });
                 });
 
@@ -315,13 +313,9 @@ namespace Travel_Service.Migrations
 
             modelBuilder.Entity("Travel_Service.Models.Entity.Flight", b =>
                 {
-                    b.HasOne("Travel_Service.Models.Entity.TravelPackage", "TravelPackage")
+                    b.HasOne("Travel_Service.Models.Entity.TravelPackage", null)
                         .WithMany("Flights")
-                        .HasForeignKey("TravelPackageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TravelPackage");
+                        .HasForeignKey("TravelPackagePackageId");
                 });
 
             modelBuilder.Entity("Travel_Service.Models.Entity.Room", b =>

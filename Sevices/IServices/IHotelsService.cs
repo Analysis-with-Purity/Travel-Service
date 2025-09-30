@@ -4,7 +4,7 @@ namespace Travel_Service.Sevices.IServices;
 
 public interface IHotelsService
 {
-    Task<IEnumerable<Hotel>> GetAllHotelsAsync();
+    Task<IEnumerable<HotelDto>> GetAllHotelsAsync();
     Task<Hotel> GetHotelByIdAsync(int hotelId);
     Task AddHotelAsync(Hotel hotel);
     Task UpdateHotelAsync(Hotel hotel);

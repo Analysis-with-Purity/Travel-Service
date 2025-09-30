@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Travel_Service.Migrations
 {
     /// <inheritdoc />
-    public partial class AddModels : Migration
+    public partial class AddModelsToDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -93,17 +93,16 @@ namespace Travel_Service.Migrations
                     ArrivalLocation = table.Column<string>(type: "text", nullable: false),
                     Amount = table.Column<string>(type: "text", nullable: false),
                     Class = table.Column<int>(type: "integer", nullable: false),
-                    TravelPackageId = table.Column<int>(type: "integer", nullable: false)
+                    TravelPackagePackageId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Flights", x => x.FlightId);
                     table.ForeignKey(
-                        name: "FK_Flights_TravelPackages_TravelPackageId",
-                        column: x => x.TravelPackageId,
+                        name: "FK_Flights_TravelPackages_TravelPackagePackageId",
+                        column: x => x.TravelPackagePackageId,
                         principalTable: "TravelPackages",
-                        principalColumn: "PackageId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "PackageId");
                 });
 
             migrationBuilder.CreateTable(
@@ -150,11 +149,11 @@ namespace Travel_Service.Migrations
 
             migrationBuilder.InsertData(
                 table: "Flights",
-                columns: new[] { "FlightId", "Airline", "Amount", "ArrivalLocation", "Class", "DepartureLocation", "TravelPackageId" },
+                columns: new[] { "FlightId", "Airline", "Amount", "ArrivalLocation", "Class", "DepartureLocation", "TravelPackagePackageId" },
                 values: new object[,]
                 {
-                    { 1, "Emirates", "1200", "Dubai", 0, "Lagos", 0 },
-                    { 2, "Air France", "1100", "Paris", 1, "Lagos", 0 }
+                    { 1, "Emirates", "1200", "Dubai", 0, "Lagos", null },
+                    { 2, "Air France", "1100", "Paris", 1, "Lagos", null }
                 });
 
             migrationBuilder.InsertData(
@@ -205,9 +204,9 @@ namespace Travel_Service.Migrations
                 column: "RoomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Flights_TravelPackageId",
+                name: "IX_Flights_TravelPackagePackageId",
                 table: "Flights",
-                column: "TravelPackageId");
+                column: "TravelPackagePackageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rooms_HotelId",

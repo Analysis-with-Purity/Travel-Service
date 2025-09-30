@@ -14,15 +14,24 @@ public class HotelsRepository: IHotelsRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Hotel>> GetAllHotelsAsync()
-    {
-        return await _context.Hotels.Include(h => h.Rooms).ToListAsync();
-    }
+    // public async Task<IEnumerable<Hotel>> GetAllHotelsAsync()
+    // {
+    //     return await _context.Hotels.Include(h => h.Rooms).ToListAsync();
+    // }
+    
+    
 
     public async Task<Hotel> GetHotelByIdAsync(int hotelId)
     {
         return await _context.Hotels.Include(h => h.Rooms)
             .FirstOrDefaultAsync(h => h.HotelId == hotelId);
+    }
+    
+    public async Task<IEnumerable<Hotel>> GetAllHotelsAsync()
+    {
+        return await _context.Hotels
+            .Include(h => h.Rooms)
+            .ToListAsync();
     }
 
     public async Task AddHotelAsync(Hotel hotel)
